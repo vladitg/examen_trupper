@@ -15,8 +15,6 @@ import com.example.examentrupper.services.ProductoService;
 @RequestMapping("/productos")
 public class ProductoController {
 	
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(OrdenController.class);
-	
 	@Autowired 
 	private ProductoService productoService;
 	

@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrdenController {
 	@Autowired
 	private OrdenService ordenService;
-
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(OrdenController.class);
-
+	
 	@PostMapping
 	@LogExecutionTime
 	public OrdenModel saveOrden(@RequestBody OrdenModel orden) {

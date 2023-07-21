@@ -2,12 +2,9 @@ package com.example.examentrupper.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,22 +24,8 @@ public class ProductoModel {
 	@Column
 	private Double precio;
 
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "orden_id")
-	private OrdenModel orden_id;
- 
-    public ProductoModel() {
-    	
-    }
- 
-    public ProductoModel(String codigo, String descripcion, Double precio, OrdenModel orden_id)
-    {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.orden_id = orden_id;
-    }
+	@Column
+	private Long orden_id;
 
 	public Long getProducto_id() {
 		return producto_id;
@@ -76,11 +59,11 @@ public class ProductoModel {
 		this.precio = precio;
 	}
 
-	public OrdenModel getOrden_id() {
+	public Long getOrden() {
 		return orden_id;
 	}
 
-	public void setOrden_id(OrdenModel orden_id) {
+	public void setOrden_id(Long orden_id) {
 		this.orden_id = orden_id;
 	}
 

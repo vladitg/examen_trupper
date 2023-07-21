@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.examentrupper.models.OrdenModel;
 
 import com.example.examentrupper.repositories.IOrdenRepository;
+import com.example.examentrupper.repositories.IProductoRepository;
 
 @Service
 public class OrdenService {
@@ -14,11 +15,21 @@ public class OrdenService {
 	@Autowired
 	IOrdenRepository ordenRepository;
 	
+	@Autowired
+	IProductoRepository productoRepository;
+	
 	public Optional<OrdenModel>getById(Long id){
 		return ordenRepository.findById(id);
 	}
 
 	public OrdenModel saveOrden(OrdenModel orden) {
-		return ordenRepository.save(orden);
+		OrdenModel ordenNueva = ordenRepository.save(orden);
+		ordenNueva.getProductos().forEach(
+                producto -> {
+                	producto.setOrden_id(orden.getOrden_id());
+                }
+        );
+		productoRepository.saveAll(ordenNueva.getProductos());
+		return ordenNueva;
 	}
 }

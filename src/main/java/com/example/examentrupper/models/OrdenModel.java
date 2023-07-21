@@ -1,6 +1,7 @@
 package com.example.examentrupper.models;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -21,17 +22,8 @@ public class OrdenModel {
 	@Column
 	private Double total;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orden_id", cascade = CascadeType.ALL)
-    private List<ProductoModel> productos;
-
-	public OrdenModel() {
-	}
-	
-	public OrdenModel(Long sucursal_id, Date fecha, Double total) {
-		this.sucursal_id = sucursal_id;
-		this.fecha = fecha;
-		this.total = total;
-	}
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "orden_id")
+    private List<ProductoModel> productos = new ArrayList<>();
 	
 	public Long getOrden_id() {
 		return orden_id;
@@ -72,7 +64,5 @@ public class OrdenModel {
 	public void setProductos(List<ProductoModel> productos) {
 		this.productos = productos;
 	}
-
-	
 	
 }
