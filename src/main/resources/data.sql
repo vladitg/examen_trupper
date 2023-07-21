@@ -1,0 +1,1 @@
+INSERT INTO SUCURSALES (sucursal_id, nombre) VALUES (1, 'CDMX');
